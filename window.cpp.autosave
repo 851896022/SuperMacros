@@ -6,6 +6,7 @@
 #include "QColor"
 #include "QScreen"
 #include "QDebug"
+#include <QMessageBox>
 window::window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::window)
@@ -142,7 +143,7 @@ void window::on_btnSave_clicked()
     allstr.remove("\r");
     QStringList lineList=allstr.split("\n");
 
-    QMap<QString,bool> boolMap;
+    
     qDebug()<<boolMap["b2"];
     for(int line=0;line<lineList.count();line++)
     {
@@ -154,8 +155,7 @@ void window::on_btnSave_clicked()
         }
         else if(wordList.at(0)==QString("/b"))
         {
-            qDebug()<<line<<"/b";
-            continue;
+            boolMap.insert(wordList.at(2),stringToBool(wordList.at(1)));
         }
         else if(wordList.at(0)==QString("/k"))
         {
@@ -169,6 +169,67 @@ void window::on_btnSave_clicked()
         }
     }
 }
+bool window::stringToBoolLine(QString str)
+{
+    
+    int c1=str.count("|");
+    int c2=str.count("&");
+    if(c1>0&&c2>0)
+    {
+        QMessageBox::information(this,"错误！","不能同时|和&");
+        return false;
+    }
+    else if(c1>0)
+    {
+        QStringList point=str.split("|");
+        bool t=stringToBoolLPoint(point.at(0));
+        for(int i=1;i<point.count();i++)
+        {
+            t = t || stringToBoolLPoint(point.at(i));
+        }
+        return t;
+    }
+    else if(c2>0)
+    {
+        QStringList point=str.split("&");
+        bool t=stringToBoolLPoint(point.at(0));
+        for(int i=1;i<point.count();i++)
+        {
+            t = t && stringToBoolLPoint(point.at(i));
+        }
+        return t;
+    }
+    else
+    {
+        return stringToBoolLPoint(str);
+    }
+    
+}
+bool window::stringToBoolLPoint(QString str)
+{
+    if(str.count(":")>0)
+    {
+        QStringList t=str.split(":");
+        if(t.at(0)==QString("nobuff"))
+        {
+            
+        }
+    }
+    else if(str.count("<")>0)
+    {
+        QStringList t=str.split("<");
+    }
+    else if(str.count(">")>0)
+    {
+        QStringList t=str.split(">");
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
 
 
 
