@@ -1,0 +1,67 @@
+58|F1
+59|F2
+60|F3
+61|F4
+62|F5
+63|F6
+64|F7
+65|F8
+66|F9
+67|F10
+68|F11
+69|F12
+30|1 and !
+31|2 and @
+32|3 and #
+33|4 and S
+34|5 and %
+35|6 and A
+36|7 and &
+37|8 and '
+38|9 and (
+39|0 and )
+4|a and A
+5|b and B
+6|c and C
+7|d and D
+8|e and E
+9|f and F
+10|g and G
+11|h and H
+12|i and I
+13|j and J
+14|k and K
+15|I and L
+16|in and M
+17|n and N
+18|o and 0
+19|p and P
+20|q and Q
+21|r and R
+22|s and S
+23|t and T
+24|u and U
+25|v and V
+26|w and W
+27|x and X
+28|v and Y
+29|z and Z
+40|ENTER
+41|ESC
+42|Backspace
+43|Tab
+44|Spacebar
+45|- and _
+46|= and +
+47|[ and {
+48|] and }
+49|\ and ح
+50|# and -
+51|; and :
+52|' and "
+53|` and ~
+54|. and <
+55|. and >
+56|/ and ?
+57|Caps Lock
+70|PrintSaeen
