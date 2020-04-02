@@ -142,14 +142,14 @@ p, li { white-space: pre-wrap; }
           <item>
            <widget class="QPushButton" name="btnSave">
             <property name="text">
-             <string>保存</string>
+             <string>测试并保存</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="btn3">
             <property name="text">
-             <string>备用</string>
+             <string>使用当前宏</string>
             </property>
            </widget>
           </item>

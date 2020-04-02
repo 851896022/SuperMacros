@@ -6,6 +6,7 @@
 #include "QColor"
 #include "QScreen"
 #include "QDebug"
+#include <QMessageBox>
 window::window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::window)
@@ -15,7 +16,7 @@ window::window(QWidget *parent) :
     delayCount.setSingleShot(true);
 
     ui->comList->addItems(g->comNameList);
-
+    ui->textEdit->setText(g->macro);
     QTimer *timer=new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(on_test_clicked()));
     timer->start(1000);
@@ -111,7 +112,7 @@ void window::on_startLink_clicked()
     }
 }
 
-
+#include <QSettings>
 double window::colorDiff(QColor hsv1,QColor hsv2)
 {
 
@@ -138,37 +139,237 @@ double window::colorDiff(QColor hsv1,QColor hsv2)
 
 void window::on_btnSave_clicked()
 {
+    isOk=true;
+
     QString allstr=ui->textEdit->toPlainText();
     allstr.remove("\r");
     QStringList lineList=allstr.split("\n");
-
-    QMap<QString,bool> boolMap;
-    qDebug()<<boolMap["b2"];
+    boolMap.clear();
     for(int line=0;line<lineList.count();line++)
     {
         QStringList wordList=lineList.at(line).split(" ");
         if(wordList.count()<2 || wordList.at(0)==QString("/z"))//如果太短或者为注释
         {
-            qDebug()<<line<<"/z";
             continue;
         }
         else if(wordList.at(0)==QString("/b"))
         {
-            qDebug()<<line<<"/b";
-            continue;
+            boolMap.insert(wordList.at(2),stringToBoolLine(wordList.at(1)));
         }
         else if(wordList.at(0)==QString("/k"))
         {
-            qDebug()<<line<<"/k";
-            continue;
+            if(stringToBoolLine(wordList.at(1)))
+            {
+                if(wordList.at(2).toInt()>150||wordList.at(2).toInt()<4)
+                {
+                    QMessageBox::information(this,"错误！","键值错误");
+                    isOk=false;
+                }
+                //g->sendCache.append((char)wordList.at(2).toInt());
+            }
         }
         else
         {
-            qDebug()<<line<<"error";
-            continue;
+            QMessageBox::information(this,"错误！","未知错误1");
+            isOk=false;
         }
+    }
+    if(isOk)
+    {
+        QMessageBox::information(this,"通过！","测试通过");
+        QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+        iniFile.setValue("macro",allstr);
+        ui->btn3->setEnabled(true);
+    }
+
+}
+bool window::stringToBoolLine(QString str)
+{
+
+    int c1=str.count("|");
+    int c2=str.count("&");
+    if(c1>0&&c2>0)
+    {
+        QMessageBox::information(this,"错误！","不能同时|和&");
+        isOk=false;
+        return false;
+    }
+    else if(c1>0)
+    {
+        QStringList point=str.split("|");
+        bool t=stringToBoolLPoint(point.at(0));
+        for(int i=1;i<point.count();i++)
+        {
+            t = t || stringToBoolLPoint(point.at(i));
+        }
+        return t;
+    }
+    else if(c2>0)
+    {
+        QStringList point=str.split("&");
+        bool t=stringToBoolLPoint(point.at(0));
+        for(int i=1;i<point.count();i++)
+        {
+            t = t && stringToBoolLPoint(point.at(i));
+        }
+        return t;
+    }
+    else
+    {
+        return stringToBoolLPoint(str);
+    }
+
+}
+bool window::stringToBoolLPoint(QString str)
+{
+    if(str.count(":")>0)
+    {
+        QStringList t=str.split(":");
+        if(t.at(0)==QString("nobuff"))
+        {
+            int c=-1;
+            c=g->buffNameMap[t.at(1)];
+            if(c==0)
+            {
+                QMessageBox::information(this,"错误！","未知图标1");
+                isOk=false;
+                return false;
+            }
+            else
+            {
+                return g->mNoBuff(c);
+            }
+
+        }
+        else if(t.at(0)==QString("buff"))
+        {
+            int c=-1;
+            c=g->buffNameMap[t.at(1)];
+            if(c==0)
+            {
+                QMessageBox::information(this,"错误！","未知图标2");
+                isOk=false;
+                return false;
+            }
+            else
+            {
+                return g->mBuff(c);
+            }
+        }
+        else if(t.at(0)==QString("tnobuff"))
+        {
+            int c=-1;
+            c=g->buffNameMap[t.at(1)];
+            if(c==0)
+            {
+                QMessageBox::information(this,"错误！","未知图标3");
+                isOk=false;
+                return false;
+            }
+            else
+            {
+                return g->tNoBuff(c);
+            }
+        }
+        else if(t.at(0)==QString("tbuff"))
+        {
+            int c=-1;
+            c=g->buffNameMap[t.at(1)];
+            if(c==0)
+            {
+                QMessageBox::information(this,"错误！","未知图标4");
+                isOk=false;
+                return false;
+            }
+            else
+            {
+                return g->tBuff(c);
+            }
+        }
+        else
+        {
+            QMessageBox::information(this,"错误！","未知名称");
+            isOk=false;
+            return false;
+        }
+    }
+    else if(str.count("<")>0)
+    {
+        QStringList t=str.split("<");
+        if(t.at(0)==QString("HP"))
+        {
+            float f=t.at(1).toFloat();
+            if(f<1)
+            {
+                return g->perHP()<f;
+            }
+            else
+            {
+                return g->nowHP<f;
+            }
+        }
+        else
+        {
+            QMessageBox::information(this,"错误！","未知变量1");
+            isOk=false;
+            return false;
+        }
+    }
+    else if(str.count(">")>0)
+    {
+        QStringList t=str.split(">");
+        if(t.at(0)==QString("HP"))
+        {
+            float f=t.at(1).toFloat();
+            if(f<1)
+            {
+                return g->perHP()>f;
+            }
+            else
+            {
+                return g->nowHP>f;
+            }
+        }
+        else
+        {
+            QMessageBox::information(this,"错误！","未知变量2");
+            isOk=false;
+            return false;
+        }
+    }
+    else//如果没符号，认为是之前设定的键值
+    {
+        if(boolMap.contains(str))
+        {
+            return boolMap[str];
+        }
+        else
+        {
+            QMessageBox::information(this,"错误！","没有找到变量");
+            isOk=false;
+            return false;
+        }
+
     }
 }
 
 
 
+
+
+
+void window::on_btn3_clicked()
+{
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    g->macro=iniFile.value("macro").toString();
+    ui->btn3->setEnabled(false);
+}
+
+
+
+
+
+void window::on_textEdit_textChanged()
+{
+    ui->btn3->setEnabled(false);
+}

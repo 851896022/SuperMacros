@@ -43,6 +43,11 @@ GLobal::GLobal(QObject *parent) : QObject(parent)
         buffDb=iniFile.value("buff").toList();
         buffName=iniFile.value("name").toStringList();
         numDb=iniFile.value("num").toList();
+        macro=iniFile.value("macro").toString();
+        for(int i=0;i<buffName.count();i++)
+        {
+            buffNameMap.insert(buffName[i],i);
+        }
 
 
     }
@@ -188,5 +193,5 @@ bool GLobal::mBuff(int id)
 }
 float GLobal::perHP()
 {
-    return (nowHP*1.0)/(maxHP/1.0)*100.0;
+    return (nowHP*1.0)/(maxHP/1.0);
 }

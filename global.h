@@ -13,6 +13,7 @@
 #include <QVariant>
 #include <QPixmap>
 #include <QStringList>
+#include <QMap>
 class GLobal : public QObject
 {
     Q_OBJECT
@@ -37,11 +38,14 @@ public:
     QList<QVariant> buffDb;
     QStringList buffName;
     QPixmap nowScreen;
+    QMap<QString,int> buffNameMap;
     //血量
     int maxHP;
     int nowHP;
     QRect hpRect;
     QList<QVariant> numDb;
+    //宏
+    QString macro;
 
 signals:
 

@@ -18,12 +18,20 @@ public:
     explicit window(QWidget *parent = 0);
     ~window();
     QTimer delayCount;
+    QMap<QString,bool> boolMap;
+    bool isOk;
 private slots:
     void on_test_clicked();
     void on_startLink_clicked();
 
     double colorDiff(QColor hsv1,QColor hsv2);
     void on_btnSave_clicked();
+    bool stringToBoolLine(QString str);
+    bool stringToBoolLPoint(QString str);
+
+    void on_btn3_clicked();
+
+    void on_textEdit_textChanged();
 
 private:
     Ui::window *ui;

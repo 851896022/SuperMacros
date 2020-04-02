@@ -34,7 +34,8 @@ SOURCES += \
     worker/discern.cpp \
     worker/findicon.cpp \
     macro/tl.cpp \
-    worker/findhp.cpp
+    worker/findhp.cpp \
+    macro/actuator.cpp
 
 HEADERS += \
         window.h \
@@ -46,7 +47,8 @@ HEADERS += \
     worker/discern.h \
     worker/findicon.h \
     macro/tl.h \
-    worker/findhp.h
+    worker/findhp.h \
+    macro/actuator.h
 
 FORMS += \
         window.ui
