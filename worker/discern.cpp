@@ -20,6 +20,10 @@ Discern::Discern(QObject *parent) : QObject(parent)
 void Discern::onTimerOut()
 {
 
+    if(!g->isWindowOk)
+    {
+        return;
+    }
     g->nowScreen = list_screen.at(0)->grabWindow(0,0,0,g->targetBuffRect[11].x()+45,g->targetBuffRect[11].y()+45);
     findHp->start();
     for(int i=0;i<24;i++)

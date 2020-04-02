@@ -23,6 +23,8 @@ private slots:
     void on_startLink_clicked();
 
     double colorDiff(QColor hsv1,QColor hsv2);
+    void on_btnSave_clicked();
+
 private:
     Ui::window *ui;
 };

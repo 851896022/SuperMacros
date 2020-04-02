@@ -135,3 +135,8 @@ double window::colorDiff(QColor hsv1,QColor hsv2)
     return sqrt(dx * dx + dy * dy + dz * dz);
 
 }
+
+void window::on_btnSave_clicked()
+{
+    qDebug()<<ui->textEdit->document()->toRawText();
+}

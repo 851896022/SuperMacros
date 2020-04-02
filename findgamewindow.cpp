@@ -10,7 +10,18 @@ void FindGameWindow::onTimerOut()
 {
     HWND hq=FindWindow("KGWin32App",NULL);
     RECT rect;
-    GetWindowRect(hq,&rect);
+    rect.left=0;
+    rect.top=0;
+    rect.right=1920;
+    rect.bottom=1080;
+    if(GetWindowRect(hq,&rect))
+    {
+        g->isWindowOk=true;
+    }
+    else
+    {
+        g->isWindowOk=false;
+    }
     int x=(int)rect.left+8;
     int y=(int)rect.top+32;
     int w=(int)(rect.right-rect.left)-17;

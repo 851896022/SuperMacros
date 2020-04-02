@@ -26,6 +26,8 @@ public:
     QList<char> sendCache;
     QTimer sendTimer;
     int temp=600;
+    //窗口
+    bool isWindowOk=false;
     //技能
     QRect windowRect;
     QRect myBuffRect[12];
