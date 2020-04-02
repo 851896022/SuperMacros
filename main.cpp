@@ -8,7 +8,8 @@
 #include "test.h"
 #include "findgamewindow.h"
 #include "worker/discern.h"
-#include "macro/tl.h"
+//#include "macro/tl.h"
+#include "macro/actuator.h"
 void setDebugOutput(const QString &targetFilePath, const bool &argDateFlag = false);
 int main(int argc, char *argv[])
 {
@@ -22,7 +23,7 @@ int main(int argc, char *argv[])
     test t;
     g=new GLobal;
     window w;
-    MyGlobalShortCut *shortcut = new MyGlobalShortCut("F9",&w);
+    MyGlobalShortCut *shortcut = new MyGlobalShortCut("F8",&w);
 
 
 
@@ -30,8 +31,8 @@ int main(int argc, char *argv[])
     w.show();
     FindGameWindow fgw;
     Discern dis;
-    TL tl;
-    QObject::connect(shortcut,SIGNAL(activated()),&tl,SLOT(control()));
+    Actuator act;
+    QObject::connect(shortcut,SIGNAL(activated()),&act,SLOT(control()));
     return a.exec();
 }
 //日志生成

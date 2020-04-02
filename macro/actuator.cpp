@@ -3,16 +3,26 @@
 Actuator::Actuator(QThread *parent) : QThread(parent)
 {
     timer=new QTimer;
-    connect(timer,SIGNAL(timeout()),this,SLOT(start(Priority)));
+    connect(timer,SIGNAL(timeout()),this,SLOT(run()));
     timer->start(500);
 
 }
+void Actuator::control()
+{
+    if(timer->isActive())
+    {
+        timer->stop();
+    }
+    else
+    {
+        timer->start(500);
+    }
+}
+
 void Actuator::run()
 {
 
-}
-void Actuator::on_btnSave_clicked()
-{
+
 
 
     QString allstr=g->macro;

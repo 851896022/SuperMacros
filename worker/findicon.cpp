@@ -85,11 +85,11 @@ void FindIcon::run()
 
     if(isMy)
     {
-        g->myBuffID[No]=ID+1;
+        g->myBuffID[No]=ID;
     }
     else
     {
-        g->targetBuffID[No]=ID+1;
+        g->targetBuffID[No]=ID;
     }
 
 }

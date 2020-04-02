@@ -97,6 +97,7 @@ void GLobal::onReceived()
 }
 void GLobal::sendData()
 {
+    if(sendCache.count()>0) qDebug()<<sendCache;
     char data[13];
 
     data[0]=(char)0xE5;

@@ -18,6 +18,7 @@ public slots:
     void run();
     bool stringToBoolLine(QString str);
     bool stringToBoolLPoint(QString str);
+    void control();
 };
 
 #endif // ACTUATOR_H
