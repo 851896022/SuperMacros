@@ -1,5 +1,5 @@
 #include "discern.h"
-
+#include <QDateTime>
 Discern::Discern(QObject *parent) : QObject(parent)
 {
     timer = new QTimer;
@@ -12,19 +12,87 @@ Discern::Discern(QObject *parent) : QObject(parent)
 
 
     findHp = new FindHp;
-
+    findHp->initTHis();
 
     timer->start(480);
     list_screen =  QGuiApplication::screens(); //可能电脑接了多个屏幕
 }
+#include "QPixmap"
+#include <QApplication>
+#include <QWindow>
 void Discern::onTimerOut()
 {
+
+
+    g->nowScreen=g->w->screen()->grabWindow(g->w->winId());
+    g->nowScreen.save("A:/sss.bmp");
+    int w=g->nowScreen.width();
+    int h=g->nowScreen.height();
+    float stdScale = 4.0/3.0;
+    float nowScale = (w*1.0)/(h*1.0);
+    float scale ;
+    if(nowScale>stdScale)//宽了，以高为准
+    {
+        scale = (h*1.0)/(1080.0);
+    }
+    else//窄了，以宽为准
+    {
+        scale = (w*1.0)/(1440.0);
+    }
+    g->hpRect.setRect(100*scale,52*scale,190*scale,12*scale);
+    for(int i=0;i<12;i++)
+    {
+        g->myBuffRect[i].setRect((w/2)-307+g->mDev.x()+(48*i),(h/2)-128+g->mDev.y(),42,42);
+        g->targetBuffRect[i].setRect((w/2)-109+g->tDev.x()+(48*i),(h/2)+53+g->tDev.y(),42,42);
+    }
+
+
+
+
+
+
+
+
+#ifdef asdlkjasf
+    int x=(int)rect.left+8;
+    int y=(int)rect.top+32;
+    int w=(int)(rect.right-rect.left)-17;
+    int h=(int)(rect.bottom-rect.top)-41;
+    g->windowRect.setRect(x,y,w,h);
+    //g->myBuffRect[0].setRect(x+653,y+413,42,42);
+    //g->targetBuffRect[0].setRect(x+1079,y+594,42,42);
+    for(int i=0;i<12;i++)
+    {
+        g->myBuffRect[i].setRect(x+653+(48*i),y+413,42,42);
+        g->targetBuffRect[i].setRect(x+1079+(48*i),y+594,42,42);
+    }
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+    //刷新坐标
+    for(int i=0;i<24;i++)
+    {
+        findIcon[i]->initThis(i);
+    }
+    findHp->initTHis();
 
     if(!g->isWindowOk)
     {
         return;
     }
-    g->nowScreen = list_screen.at(0)->grabWindow(0,0,0,g->targetBuffRect[11].x()+45,g->targetBuffRect[11].y()+45);
+    //WId ss = 0;
+    // = list_screen.at(0)->grabWindow(0,0,0,g->targetBuffRect[11].x()+45,g->targetBuffRect[11].y()+45);
+    //g->nowScreen=list_screen.at(0)->grabWindow(qApp->desktop().winId());
     findHp->start();
     for(int i=0;i<24;i++)
     {

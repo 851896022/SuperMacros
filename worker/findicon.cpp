@@ -30,15 +30,30 @@ void FindIcon::run()
     if(isMy)
     {
         pixmap.save("A:/A"+QString::number(No)+".bmp");
+        g->buffImgCacheMy[No]=pixmap;
     }
     else
     {
        pixmap.save("A:/B"+QString::number(No)+".bmp");
+       g->buffImgCacheT[No]=pixmap;
     }
 
 
     QImage image = pixmap.toImage();//将像素图转换为QImage
+    if(image.width()<8 || image.height()<9)
+    {
+        if(isMy)
+        {
+            g->myBuffID[No]=-1;
+        }
+        else
+        {
+            g->targetBuffID[No]=-1;
+        }
+        return;
+    }
     image=image.scaled(8,9,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
     QBitArray hash(64);
     for(int x=0;x<8;x++)
     {

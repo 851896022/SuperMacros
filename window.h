@@ -6,6 +6,8 @@
 #include "math.h"
 using namespace std;
 #define PI 3.1415926535897932384626433832795
+#include <QLabel>
+#include <QHBoxLayout>
 namespace Ui {
 class window;
 }
@@ -20,6 +22,10 @@ public:
     QTimer delayCount;
     QMap<QString,bool> boolMap;
     bool isOk;
+    QHBoxLayout hBoxMy;
+    QHBoxLayout hBoxT;
+    QLabel lbMy[12];
+    QLabel lbT[12];
 private slots:
     void on_test_clicked();
     void on_startLink_clicked();
@@ -32,6 +38,22 @@ private slots:
     void on_btn3_clicked();
 
     void on_textEdit_textChanged();
+
+    void on_btnup_1_clicked();
+
+    void on_btndown_1_clicked();
+
+    void on_btnleft_1_clicked();
+
+    void on_btnright_1_clicked();
+
+    void on_btnup_2_clicked();
+
+    void on_btndown_2_clicked();
+
+    void on_btnleft_2_clicked();
+
+    void on_btnright_2_clicked();
 
 private:
     Ui::window *ui;

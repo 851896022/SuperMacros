@@ -21,6 +21,16 @@ window::window(QWidget *parent) :
     connect(timer,SIGNAL(timeout()),this,SLOT(on_test_clicked()));
     timer->start(1000);
 
+    for(int i=0;i<12;i++)
+    {
+        hBoxMy.addWidget(&lbMy[i]);
+        hBoxT.addWidget(&lbT[i]);
+    }
+
+    ui->groupBox_1->setLayout(&hBoxMy);
+    ui->groupBox_2->setLayout(&hBoxT);
+
+
 }
 
 window::~window()
@@ -52,6 +62,15 @@ void window::on_test_clicked()
     ui->tbuff->setText(tbuff);
     ui->mbuff->setText(mbuff);
 
+    //修改图标显示
+    if(ui->tabWidget->currentIndex()==2)
+    {
+        for(int i=0;i<12;i++)
+        {
+            lbT[i].setPixmap(g->buffImgCacheT[i]);
+            lbMy[i].setPixmap(g->buffImgCacheMy[i]);
+        }
+    }
 
 
 #ifdef sdaa
@@ -373,3 +392,62 @@ void window::on_textEdit_textChanged()
 {
     ui->btn3->setEnabled(false);
 }
+
+void window::on_btnup_1_clicked()
+{
+    g->mDev.setY(g->mDev.y()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mdev", g->mDev);
+}
+
+void window::on_btndown_1_clicked()
+{
+    g->mDev.setY(g->mDev.y()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mdev", g->mDev);
+}
+
+void window::on_btnleft_1_clicked()
+{
+    g->mDev.setX(g->mDev.x()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mdev", g->mDev);
+}
+
+void window::on_btnright_1_clicked()
+{
+    g->mDev.setX(g->mDev.x()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mdev", g->mDev);
+}
+
+
+void window::on_btnup_2_clicked()
+{
+    g->tDev.setY(g->tDev.y()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("tdev", g->tDev);
+}
+
+void window::on_btndown_2_clicked()
+{
+    g->tDev.setY(g->tDev.y()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("tdev", g->tDev);
+}
+
+void window::on_btnleft_2_clicked()
+{
+    g->tDev.setX(g->tDev.x()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("tdev", g->tDev);
+}
+
+void window::on_btnright_2_clicked()
+{
+    g->tDev.setX(g->tDev.x()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("tdev", g->tDev);
+}
+
+

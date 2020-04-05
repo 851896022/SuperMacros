@@ -2,15 +2,16 @@
 #include <QTime>
 FindHp::FindHp(QThread *parent) : QThread(parent)
 {
-    rect=g->hpRect;
+
 }
 void FindHp::initTHis()
 {
-
+    rect=g->hpRect;
 }
 void FindHp::run()
 {
 
+    //qDebug()<<rect;
     QPixmap screen = g->nowScreen;
     QPixmap pixmap=screen.copy(rect);
     pixmap.save("A:/001.bmp");
@@ -133,7 +134,13 @@ bool FindHp::lineIsHaveColor(int x)
 }
 int FindHp::imageToNumber(QImage img)
 {
+    if(image.width()<8 || image.height()<9)
+    {
+
+        return 9;
+    }
     img=img.scaled(8,9,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
     QBitArray hash(64);
     for(int x=0;x<8;x++)
     {

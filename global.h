@@ -14,6 +14,7 @@
 #include <QPixmap>
 #include <QStringList>
 #include <QMap>
+#include <QPoint>
 class GLobal : public QObject
 {
     Q_OBJECT
@@ -29,6 +30,11 @@ public:
     int temp=600;
     //窗口
     bool isWindowOk=false;
+    QWindow *w;
+    QPoint mDev;
+    QPoint tDev;
+    QPixmap buffImgCacheMy[12];
+    QPixmap buffImgCacheT[12];
     //技能
     QRect windowRect;
     QRect myBuffRect[12];
