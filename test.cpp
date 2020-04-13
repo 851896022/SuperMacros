@@ -3,7 +3,7 @@
 #include <QApplication>
 test::test(QObject *parent) : QObject(parent)
 {
-   //num();
+   num();
 
 
 }

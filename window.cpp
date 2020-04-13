@@ -71,6 +71,7 @@ void window::on_test_clicked()
             lbMy[i].setPixmap(g->buffImgCacheMy[i]);
         }
     }
+    ui->lab_hp->setPixmap(g->hpImgCacheMy);
 
 
 #ifdef sdaa
@@ -451,3 +452,59 @@ void window::on_btnright_2_clicked()
 }
 
 
+
+void window::on_btnup_3_clicked()
+{
+    g->mHp.setY(g->mHp.y()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}
+
+void window::on_btndown_3_clicked()
+{
+    g->mHp.setY(g->mHp.y()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}
+
+void window::on_btnleft_3_clicked()
+{
+    g->mHp.setX(g->mHp.x()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}
+
+void window::on_btnright_3_clicked()
+{
+    g->mHp.setX(g->mHp.x()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}
+
+void window::on_btnwa_3_clicked()
+{
+    g->mHp.setWidth(g->mHp.width()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}
+
+void window::on_btnwd_3_clicked()
+{
+    g->mHp.setWidth(g->mHp.width()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}
+
+void window::on_btnha_3_clicked()
+{
+    g->mHp.setHeight(g->mHp.height()+1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}
+
+void window::on_btnhd_3_clicked()
+{
+    g->mHp.setHeight(g->mHp.height()-1);
+    QSettings iniFile(qApp->applicationDirPath() +"/test.ini", QSettings::IniFormat);
+    iniFile.setValue("mhp", g->mHp);
+}

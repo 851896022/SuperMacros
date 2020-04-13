@@ -55,6 +55,22 @@ private slots:
 
     void on_btnright_2_clicked();
 
+    void on_btnup_3_clicked();
+
+    void on_btndown_3_clicked();
+
+    void on_btnleft_3_clicked();
+
+    void on_btnright_3_clicked();
+
+    void on_btnwa_3_clicked();
+
+    void on_btnwd_3_clicked();
+
+    void on_btnha_3_clicked();
+
+    void on_btnhd_3_clicked();
+
 private:
     Ui::window *ui;
 };

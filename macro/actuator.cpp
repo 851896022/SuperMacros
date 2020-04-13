@@ -51,6 +51,7 @@ void Actuator::run()
                 else
                 {
                     g->sendCache.append((char)wordList.at(2).toInt());
+                    return;
                 }
 
             }

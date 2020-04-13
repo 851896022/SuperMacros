@@ -39,7 +39,7 @@ void Discern::onTimerOut()
     {
         scale = (w*1.0)/(1440.0);
     }
-    g->hpRect.setRect(100*scale,52*scale,190*scale,12*scale);
+    g->hpRect.setRect(100*scale+g->mHp.x(),52*scale+g->mHp.y(),190*scale+g->mHp.width(),12*scale+g->mHp.height());
     for(int i=0;i<12;i++)
     {
         g->myBuffRect[i].setRect((w/2)-307+g->mDev.x()+(48*i),(h/2)-128+g->mDev.y(),42,42);

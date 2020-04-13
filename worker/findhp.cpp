@@ -14,6 +14,7 @@ void FindHp::run()
     //qDebug()<<rect;
     QPixmap screen = g->nowScreen;
     QPixmap pixmap=screen.copy(rect);
+    g->hpImgCacheMy=pixmap;
     pixmap.save("A:/001.bmp");
     image = pixmap.toImage();//将像素图转换为QImage
     for(int x=0;x<image.width();x++)
@@ -178,7 +179,7 @@ int FindHp::imageToNumber(QImage img)
 
         }
 
-        if(c<2)
+        if(c<10)
         {
 
 

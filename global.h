@@ -33,8 +33,10 @@ public:
     QWindow *w;
     QPoint mDev;
     QPoint tDev;
+    QRect mHp;
     QPixmap buffImgCacheMy[12];
     QPixmap buffImgCacheT[12];
+    QPixmap hpImgCacheMy;
     //技能
     QRect windowRect;
     QRect myBuffRect[12];

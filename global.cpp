@@ -46,6 +46,7 @@ GLobal::GLobal(QObject *parent) : QObject(parent)
         macro=iniFile.value("macro").toString();
         mDev=iniFile.value("mdev").toPoint();
         tDev=iniFile.value("tdev").toPoint();
+        mHp=iniFile.value("mhp").toRect();
         for(int i=0;i<buffName.count();i++)
         {
             buffNameMap.insert(buffName[i],i);
