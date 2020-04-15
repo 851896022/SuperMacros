@@ -35,7 +35,8 @@ SOURCES += \
     worker/findicon.cpp \
     macro/tl.cpp \
     worker/findhp.cpp \
-    macro/actuator.cpp
+    macro/actuator.cpp \
+    worker/findkill.cpp
 
 HEADERS += \
         window.h \
@@ -48,7 +49,8 @@ HEADERS += \
     worker/findicon.h \
     macro/tl.h \
     worker/findhp.h \
-    macro/actuator.h
+    macro/actuator.h \
+    worker/findkill.h
 
 FORMS += \
         window.ui

@@ -26,9 +26,15 @@ window::window(QWidget *parent) :
         hBoxMy.addWidget(&lbMy[i]);
         hBoxT.addWidget(&lbT[i]);
     }
+    for(int i=0;i<16;i++)
+    {
+        hBoxKill.addWidget(&lbKill[i]);
+    }
+
 
     ui->groupBox_1->setLayout(&hBoxMy);
     ui->groupBox_2->setLayout(&hBoxT);
+    ui->groupBox_4->setLayout(&hBoxKill);
 
 
 }
@@ -72,7 +78,7 @@ void window::on_test_clicked()
         }
     }
     ui->lab_hp->setPixmap(g->hpImgCacheMy);
-
+    lbKill[0].setPixmap(g->killImgCache);
 
 #ifdef sdaa
     int x ;

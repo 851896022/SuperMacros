@@ -7,7 +7,7 @@ TL::TL(QObject *parent) : QObject(parent)
 }
 void TL::onTimeOut()
 {
-    if(g->mNoBuff(3192)) g->sendCache.append((char)0x60);
+
 }
 void TL::control()
 {

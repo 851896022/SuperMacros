@@ -6,6 +6,7 @@
 #include "QTimer"
 #include <QScreen>
 #include "findhp.h"
+#include "findkill.h"
 class Discern : public QObject
 {
     Q_OBJECT
@@ -14,6 +15,7 @@ public:
     FindIcon *findIcon[24];
     FindHp *findHp;
     QTimer *timer;
+    FindKill * findKill;
     QList<QScreen *> list_screen;
 signals:
 

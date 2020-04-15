@@ -26,6 +26,8 @@ public:
     QHBoxLayout hBoxT;
     QLabel lbMy[12];
     QLabel lbT[12];
+    QHBoxLayout hBoxKill;
+    QLabel lbKill[16];
 private slots:
     void on_test_clicked();
     void on_startLink_clicked();

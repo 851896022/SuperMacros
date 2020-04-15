@@ -37,6 +37,7 @@ public:
     QPixmap buffImgCacheMy[12];
     QPixmap buffImgCacheT[12];
     QPixmap hpImgCacheMy;
+    QPixmap killImgCache;
     //技能
     QRect windowRect;
     QRect myBuffRect[12];
@@ -54,6 +55,8 @@ public:
     QList<QVariant> numDb;
     //宏
     QString macro;
+    //技能
+    QRect killRect;
 
 signals:
 

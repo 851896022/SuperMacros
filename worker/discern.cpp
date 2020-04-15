@@ -14,6 +14,9 @@ Discern::Discern(QObject *parent) : QObject(parent)
     findHp = new FindHp;
     findHp->initTHis();
 
+    findKill = new FindKill;
+    findKill->initTHis();
+
     timer->start(480);
     list_screen =  QGuiApplication::screens(); //可能电脑接了多个屏幕
 }
@@ -45,7 +48,19 @@ void Discern::onTimerOut()
         g->myBuffRect[i].setRect((w/2)-307+g->mDev.x()+(48*i),(h/2)-128+g->mDev.y(),42,42);
         g->targetBuffRect[i].setRect((w/2)-109+g->tDev.x()+(48*i),(h/2)+53+g->tDev.y(),42,42);
     }
+    //---------技能-------------
 
+        int kx;
+        int ky;
+        int kw;
+        int kh;
+        ky=h-(198*scale);
+        kh=44*scale;
+        kw=683*scale;
+        kx=(w/2)-(kw/2)+(24*scale);
+
+
+    g->killRect.setRect(kx,ky,kw,kh);
 
 
 
@@ -85,6 +100,7 @@ void Discern::onTimerOut()
         findIcon[i]->initThis(i);
     }
     findHp->initTHis();
+    findKill->initTHis();
 
     if(!g->isWindowOk)
     {
@@ -94,6 +110,7 @@ void Discern::onTimerOut()
     // = list_screen.at(0)->grabWindow(0,0,0,g->targetBuffRect[11].x()+45,g->targetBuffRect[11].y()+45);
     //g->nowScreen=list_screen.at(0)->grabWindow(qApp->desktop().winId());
     findHp->start();
+    findKill->start();
     for(int i=0;i<24;i++)
     {
         findIcon[i]->start();
