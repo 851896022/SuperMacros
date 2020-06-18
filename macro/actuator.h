@@ -12,6 +12,7 @@ public:
     explicit Actuator(QThread *parent = nullptr);
     QTimer *timer;
     QMap<QString,bool> boolMap;
+
 signals:
 
 public slots:

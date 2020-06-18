@@ -17,6 +17,7 @@
 #include <QPoint>
 class GLobal : public QObject
 {
+
     Q_OBJECT
 public:
     explicit GLobal(QObject *parent = nullptr);

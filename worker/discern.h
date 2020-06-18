@@ -17,6 +17,7 @@ public:
     QTimer *timer;
     FindKill * findKill;
     QList<QScreen *> list_screen;
+
 signals:
 
 public slots:

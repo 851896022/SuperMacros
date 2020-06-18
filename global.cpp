@@ -5,6 +5,7 @@ GLobal *g;
 #include <QSettings>
 #include <QVariant>
 #include <QApplication>
+
 GLobal::GLobal(QObject *parent) : QObject(parent)
 {
 

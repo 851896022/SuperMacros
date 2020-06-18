@@ -11,6 +11,7 @@ public:
     explicit TL(QObject *parent = nullptr);
     QTimer *timer;
 
+
 signals:
 
 public slots:

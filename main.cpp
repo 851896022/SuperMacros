@@ -9,6 +9,7 @@
 #include "findgamewindow.h"
 #include "worker/discern.h"
 //#include "macro/tl.h"
+
 #include "macro/actuator.h"
 void setDebugOutput(const QString &targetFilePath, const bool &argDateFlag = false);
 int main(int argc, char *argv[])

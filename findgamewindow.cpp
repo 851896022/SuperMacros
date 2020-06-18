@@ -11,6 +11,7 @@ FindGameWindow::FindGameWindow(QObject *parent) : QObject(parent)
 #include <QWindow>
 #include <QScreen>
 #include <QPixmap>
+
 void FindGameWindow::onTimerOut()
 {
     HWND hq=FindWindow("KGWin32App",NULL);

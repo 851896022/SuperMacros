@@ -28,10 +28,12 @@ void test::buff()
         //qDebug()<<fileInfo.filePath()<<fileInfo.absolutePath() +"/"+ base+"."+suffix;
         //QFile::rename(fileInfo.filePath(),fileInfo.absolutePath() +"/"+ base+"."+suffix);
 
+
         QImage image= QImage(fileInfo.filePath());
         image=image.scaled(8,9,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
         //image.save("A:/tmp/"+QString::number(i)+".bmp");
         QBitArray hash(64);
+
         for(int x=0;x<8;x++)
         {
             for(int y=0;y<8;y++)

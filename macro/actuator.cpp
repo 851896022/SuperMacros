@@ -93,6 +93,7 @@ bool Actuator::stringToBoolLine(QString str)
             t = t && stringToBoolLPoint(point.at(i));
         }
         return t;
+
     }
     else
     {

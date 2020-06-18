@@ -13,6 +13,7 @@ window::window(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     delayCount.setSingleShot(true);
 
     ui->comList->addItems(g->comNameList);
